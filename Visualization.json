@@ -5,6 +5,8 @@
     "format": {"type": "csv"}
   },
   "mark": "bar",
+  "width":1000,
+  "height":400,
   "encoding": {
     "x": {
       "field": "Usage Description",
