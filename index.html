@@ -2,20 +2,42 @@
 <html>
 <head>
     <title>Building Inventory Visualization</title>
-</head>
-<body>
-    <div id="viz"></div>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-    
+</head>
+<body>
+    <div id="vis"></div>
     <script>
-        // Load your JSON configuration file
-        fetch('https://raw.githubusercontent.com/amaank3/amaank3.github.io/main/Visualization.json')
-            .then(response => response.json())
-            .then(spec => vegaEmbed('#viz', spec))
-            .catch(error => console.error(error));
+        var spec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "data": {
+                "url": "https://raw.githubusercontent.com/UIUC-iSchool-DataViz/fall2023-acg-acu/main/data/building_inventory.csv",
+                "format": {"type": "csv"}
+            },
+            "mark": "bar",
+            "encoding": {
+                "x": {
+                    "field": "Usage Description",
+                    "type": "nominal",
+                    "title": "Usage Description",
+                    "sort": "-y"
+                },
+                "y": {
+                    "aggregate": "count",
+                    "type": "quantitative",
+                    "title": "Count of Buildings"
+                }
+            },
+            "config": {}
+        };
+        vegaEmbed('#vis', spec)
+            .then(function(result) {
+                console.log(result);
+            })
+            .catch(console.error);
     </script>
 </body>
 </html>
+
 
