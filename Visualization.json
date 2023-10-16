@@ -1,63 +1,22 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {
-      "url": "building_inventory.csv",
-      "format": {
-        "type": "csv",
-        "parse": {"Count": "number"} 
-      },
-      "transform": [
-        {
-          "aggregate": [
-            {"op": "count", "as": "Count", "field": "Usage Description"}
-          ],
-          "groupby": ["Usage Description"]
-        }
-      ]
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/UIUC-iSchool-DataViz/fall2023-acg-acu/main/data/building_inventory.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Usage Description",
+      "type": "nominal",
+      "title": "Usage Description",
+      "sort": "-y"
     },
-    "layer": [
-      {
-        "mark": {
-          "type": "bar",
-          "tooltip": true
-        },
-        "encoding": {
-          "x": {
-            "field": "Usage Description",
-            "type": "nominal",
-            "title": "Usage Description"
-          },
-          "y": {
-            "field": "Count",
-            "type": "quantitative",
-            "title": "Count of Buildings"
-          }
-        }
-      },
-      {
-        "mark": {
-          "type": "text",
-          "align": "center",
-          "baseline": "middle",
-          "dy": -5
-        },
-        "encoding": {
-          "x": {
-            "field": "Usage Description",
-            "type": "nominal"
-          },
-          "y": {
-            "field": "Count",
-            "type": "quantitative"
-          },
-          "text": {
-            "field": "Count",
-            "type": "quantitative"
-          }
-        }
-      }
-    ],
-    "width": 800,
-    "height": 400
-  }
-  
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Count of Buildings"
+    }
+  },
+  "config": {}
+}
