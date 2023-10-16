@@ -10,9 +10,8 @@
             integrity="sha256-GfFZ6w7V/y3Ws9eHVsOXZ/F1ZFroThVZraOAx3HAt6s=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Count of Buildings for Each Usage Type</h1>
-    <div id="vis"></div>
-
+    <h1>Building Inventory Visualization</h1>
+    <div id="viz"></div>
     <script>
         var spec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -21,8 +20,8 @@
                 "format": {"type": "csv"}
             },
             "mark": "bar",
-            "width": 1000,  
-            "height": 500, 
+            "width": 1000,
+            "height": 500,
             "encoding": {
                 "x": {
                     "field": "Usage Description",
@@ -34,18 +33,18 @@
                     "aggregate": "count",
                     "type": "quantitative",
                     "title": "Count of Buildings"
-                },
+                }
             },
             "config": {}
         };
-
-        vegaEmbed('#vis', spec)
+        vegaEmbed('#viz', spec)
             .then(function(result) {
                 console.log(result);
             });
     </script>
 </body>
 </html>
+
 
 
 
