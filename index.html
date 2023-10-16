@@ -2,16 +2,20 @@
 <html>
 <head>
     <title>Building Inventory Visualization</title>
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 </head>
 <body>
-    <div id="visualization"></div>
+    <div id="viz"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    
     <script>
-        const spec = "https://raw.githubusercontent.com/amaank3/amaank3.github.io/main/Visualization.json";
-
-        vegaEmbed("#visualization", spec);
+        // Load your JSON configuration file
+        fetch('https://raw.githubusercontent.com/amaank3/amaank3.github.io/main/Visualization.json')
+            .then(response => response.json())
+            .then(spec => vegaEmbed('#viz', spec))
+            .catch(error => console.error(error));
     </script>
 </body>
 </html>
+
