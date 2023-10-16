@@ -1,0 +1,63 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "building_inventory.csv",
+      "format": {
+        "type": "csv",
+        "parse": {"Count": "number"} 
+      },
+      "transform": [
+        {
+          "aggregate": [
+            {"op": "count", "as": "Count", "field": "Usage Description"}
+          ],
+          "groupby": ["Usage Description"]
+        }
+      ]
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "bar",
+          "tooltip": true
+        },
+        "encoding": {
+          "x": {
+            "field": "Usage Description",
+            "type": "nominal",
+            "title": "Usage Description"
+          },
+          "y": {
+            "field": "Count",
+            "type": "quantitative",
+            "title": "Count of Buildings"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "center",
+          "baseline": "middle",
+          "dy": -5
+        },
+        "encoding": {
+          "x": {
+            "field": "Usage Description",
+            "type": "nominal"
+          },
+          "y": {
+            "field": "Count",
+            "type": "quantitative"
+          },
+          "text": {
+            "field": "Count",
+            "type": "quantitative"
+          }
+        }
+      }
+    ],
+    "width": 800,
+    "height": 400
+  }
+  
